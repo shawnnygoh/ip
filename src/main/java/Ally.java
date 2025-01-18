@@ -51,6 +51,8 @@ public class Ally {
                     markTask(input);
                 } else if (input.startsWith("unmark")) {
                     unmarkTask(input);
+                } else if (input.startsWith("delete")) {
+                    deleteTask(input);
                 } else if (input.startsWith("todo")) {
                     addTodo(input);
                 } else if (input.startsWith("deadline")) {
@@ -121,6 +123,27 @@ public class Ally {
             System.out.println("Sorry! The event format is invalid. 😵");
             System.out.println(horizontalDivider);
         }
+    }
+
+    private void deleteTask(String taskName) throws AllyException {
+        try {
+            if (taskName.trim().equals("delete")) {
+                throw new AllyException("Sorry! The task number cannot be empty. 😶");
+            }
+
+            int taskIndex = Integer.parseInt(taskName.substring(7)) - 1;
+            if (taskIndex >= 0 && taskIndex < tasks.size()) {
+                Task deletedTask = tasks.delete(taskIndex);
+                System.out.println("Noted! I've deleted this task:");
+                System.out.println("  " + deletedTask);
+                System.out.println("You now have " + tasks.size() + " tasks in the list!");
+            } else {
+                System.out.println("Sorry! The task number you entered is invalid. 😵");
+            }
+        } catch (NumberFormatException e) {
+            throw new AllyException("Sorry! The task number is invalid. 😵");
+        }
+        System.out.println(horizontalDivider);
     }
 
     private void printConfirmation(Task task) {

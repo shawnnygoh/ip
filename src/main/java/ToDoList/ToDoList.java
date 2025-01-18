@@ -1,42 +1,47 @@
 package ToDoList;
 
+import java.util.ArrayList;
+
 public class ToDoList {
-    private final Task[] tasks;
-    private int taskCount;
+    private final ArrayList<Task> tasks;
 
     public ToDoList() {
-        this.tasks = new Task[100];
-        this.taskCount = 0;
+        this.tasks = new ArrayList<>();
     }
 
     public void add(Task task) {
-        if (taskCount < 100) {
-            tasks[taskCount] = task;
-            taskCount++;
-        }
+        tasks.add(task);
     }
 
     public Task get(int index) {
-        if (index >= 0 && index < taskCount) {
-            return tasks[index];
+        if (index >= 0 && index < tasks.size()) {
+            return tasks.get(index);
+        }
+
+        return null;
+    }
+
+    public Task delete(int index) {
+        if (index >= 0 && index < tasks.size()) {
+            return tasks.remove(index);
         }
 
         return null;
     }
 
     public int size() {
-        return taskCount;
+        return tasks.size();
     }
 
     public void markAsDone(int index) {
-        if (index >= 0 && index < taskCount) {
-            tasks[index].markAsDone();
+        if (index >= 0 && index < tasks.size()) {
+            tasks.get(index).markAsDone();
         }
     }
 
     public void markAsNotDone(int index) {
-        if (index >= 0 && index < taskCount) {
-            tasks[index].markAsNotDone();
+        if (index >= 0 && index < tasks.size()) {
+            tasks.get(index).markAsNotDone();
         }
     }
 }

@@ -1,20 +1,20 @@
 public class ToDoList {
-    private final String[] tasks;
+    private final Task[] tasks;
     private int taskCount;
 
     public ToDoList() {
-        this.tasks = new String[100];
+        this.tasks = new Task[100];
         this.taskCount = 0;
     }
 
-    public void add(String task) {
+    public void add(String taskName) {
         if (taskCount < 100) {
-            tasks[taskCount] = task;
+            tasks[taskCount] = new Task(taskName);
             taskCount++;
         }
     }
 
-    public String get(int index) {
+    public Task get(int index) {
         if (index >= 0 && index < taskCount) {
             return tasks[index];
         }
@@ -24,5 +24,17 @@ public class ToDoList {
 
     public int size() {
         return taskCount;
+    }
+
+    public void markAsDone(int index) {
+        if (index >= 0 && index < taskCount) {
+            tasks[index].markAsDone();
+        }
+    }
+
+    public void markAsNotDone(int index) {
+        if (index >= 0 && index < taskCount) {
+            tasks[index].markAsNotDone();
+        }
     }
 }

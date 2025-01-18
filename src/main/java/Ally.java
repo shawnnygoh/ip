@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import ToDoList.*;
 
 public class Ally {
     private String name;
@@ -47,20 +48,69 @@ public class Ally {
                 markTask(input);
             } else if (input.startsWith("unmark")) {
                 unmarkTask(input);
+            } else if (input.startsWith("todo")) {
+                addTodo(input);
+            } else if (input.startsWith("deadline")) {
+                addDeadline(input);
+            } else if (input.startsWith("event")) {
+                addEvent(input);
             } else {
-                addTask(input);
+                addTodo(input);
             }
         }
     }
 
-    private void addTask(String taskName) {
-        tasks.add(taskName);
-        System.out.println("added: " + taskName);
+    private void addTodo(String taskName) {
+        if (taskName.startsWith("todo")) {
+            taskName = taskName.substring(5).trim();
+        } else {
+            taskName = taskName.trim();
+        }
+
+        Task task = new Todo(taskName);
+        tasks.add(task);
+        printConfirmation(task);
+    }
+
+    private void addDeadline(String taskName) {
+        try {
+            String[] parts = taskName.split(" /by ");
+            taskName = parts[0].substring(9).trim();
+            String deadline = parts[1].trim();
+            Task task = new Deadline(taskName, deadline);
+            tasks.add(task);
+            printConfirmation(task);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("Sorry, the deadline format is invalid.");
+            System.out.println(horizontalDivider);
+        }
+    }
+
+    private void addEvent(String taskName) {
+        try {
+            String[] parts = taskName.split(" /from ");
+            taskName = parts[0].substring(6).trim();
+            String[] time = parts[1].split(" /to ");
+            String startTime = time[0].trim();
+            String endTime = time[1].trim();
+            Task task = new Event(taskName, startTime, endTime);
+            tasks.add(task);
+            printConfirmation(task);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("Sorry, the event format is invalid.");
+            System.out.println(horizontalDivider);
+        }
+    }
+
+    private void printConfirmation(Task task) {
+        System.out.println("Got it. I've added this task.");
+        System.out.println("  " + task);
+        System.out.println("Now you have " + tasks.size() + " task(s) in the list.");
         System.out.println(horizontalDivider);
     }
 
     private void listTasks() {
-        System.out.println("Here are the tasks in your list:");
+        System.out.println("Here are the task(s) in your list:");
         for (int i = 0; i < tasks.size(); i++) {
             System.out.println((i + 1) + "." + tasks.get(i));
         }

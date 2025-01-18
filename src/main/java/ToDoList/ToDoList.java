@@ -1,3 +1,5 @@
+package ToDoList;
+
 public class ToDoList {
     private final Task[] tasks;
     private int taskCount;
@@ -7,9 +9,9 @@ public class ToDoList {
         this.taskCount = 0;
     }
 
-    public void add(String taskName) {
+    public void add(Task task) {
         if (taskCount < 100) {
-            tasks[taskCount] = new Task(taskName);
+            tasks[taskCount] = task;
             taskCount++;
         }
     }

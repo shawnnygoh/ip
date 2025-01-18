@@ -5,12 +5,13 @@ public class Ally {
     private String name;
     private static final String horizontalDivider = "____________________________________________________________";
     private static final String logo =
-              "    _    _ _       \n"
-            + "   / \\  | | |_   _ \n"
-            + "  / _ \\ | | | | | |\n"
-            + " / ___ \\| | | |_| |\n"
-            + "/_/   \\_\\_|_|\\__, |\n"
-            + "             |___/ \n";
+            "    _    _ _\n"
+                    + "   / \\  | | |_   _\n"
+                    + "  / _ \\ | | | | | |\n"
+                    + " / ___ \\| | | |_| |\n"
+                    + "/_/   \\_\\_|_|\\__, |\n"
+                    + "             |___/\n";
+
     private final Scanner sc;
     private final ToDoList tasks;
 
@@ -22,7 +23,6 @@ public class Ally {
     public void start() {
         printGreeting();
         awaitUserInput();
-        printGoodbye();
         sc.close();
     }
 
@@ -36,13 +36,14 @@ public class Ally {
 
     private void awaitUserInput() {
         String input;
-        while (true) {
+        while (sc.hasNextLine()) {
             input = sc.nextLine();
             System.out.println(horizontalDivider);
 
             if (input.equals("list")) {
                 listTasks();
             } else if (input.equals("bye")) {
+                printGoodbye();
                 break;
             } else if (input.startsWith("mark")) {
                 markTask(input);

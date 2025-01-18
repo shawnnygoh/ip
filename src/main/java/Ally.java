@@ -1,5 +1,6 @@
 import java.util.Scanner;
 import ToDoList.*;
+import AllyException.*;
 
 public class Ally {
     private String name;
@@ -29,7 +30,7 @@ public class Ally {
     private void printGreeting() {
         System.out.println(horizontalDivider);
         System.out.println(logo);
-        System.out.println("Hello! I'm Ally!");
+        System.out.println("Hi! I'm Ally!");
         System.out.println("What can I do for you?");
         System.out.println(horizontalDivider);
     }
@@ -40,32 +41,41 @@ public class Ally {
             input = sc.nextLine();
             System.out.println(horizontalDivider);
 
-            if (input.equals("list")) {
-                listTasks();
-            } else if (input.equals("bye")) {
-                printGoodbye();
-                break;
-            } else if (input.startsWith("mark")) {
-                markTask(input);
-            } else if (input.startsWith("unmark")) {
-                unmarkTask(input);
-            } else if (input.startsWith("todo")) {
-                addTodo(input);
-            } else if (input.startsWith("deadline")) {
-                addDeadline(input);
-            } else if (input.startsWith("event")) {
-                addEvent(input);
-            } else {
-                addTodo(input);
+            try {
+                if (input.equals("list")) {
+                    listTasks();
+                } else if (input.equals("bye")) {
+                    printGoodbye();
+                    break;
+                } else if (input.startsWith("mark")) {
+                    markTask(input);
+                } else if (input.startsWith("unmark")) {
+                    unmarkTask(input);
+                } else if (input.startsWith("todo")) {
+                    addTodo(input);
+                } else if (input.startsWith("deadline")) {
+                    addDeadline(input);
+                } else if (input.startsWith("event")) {
+                    addEvent(input);
+                } else {
+                    throw new UnknownCommandException();
+                }
+            } catch (AllyException e) {
+                System.out.println(e.getMessage());
+                System.out.println(horizontalDivider);
             }
         }
     }
 
-    private void addTodo(String taskName) {
+    private void addTodo(String taskName) throws AllyException {
         if (taskName.startsWith("todo")) {
-            taskName = taskName.substring(5).trim();
+            taskName = taskName.substring(4).trim();
         } else {
             taskName = taskName.trim();
+        }
+
+        if (taskName.isEmpty()) {
+            throw new EmptyTaskNameException("todo");
         }
 
         Task task = new Todo(taskName);
@@ -73,24 +83,34 @@ public class Ally {
         printConfirmation(task);
     }
 
-    private void addDeadline(String taskName) {
+    private void addDeadline(String taskName) throws AllyException {
         try {
             String[] parts = taskName.split(" /by ");
-            taskName = parts[0].substring(9).trim();
+            taskName = parts[0].substring(8).trim();
+
+            if (taskName.isEmpty()) {
+                throw new EmptyTaskNameException("deadline");
+            }
+
             String deadline = parts[1].trim();
             Task task = new Deadline(taskName, deadline);
             tasks.add(task);
             printConfirmation(task);
         } catch (ArrayIndexOutOfBoundsException e) {
-            System.out.println("Sorry, the deadline format is invalid.");
+            System.out.println("Sorry, the deadline format is invalid. 😵");
             System.out.println(horizontalDivider);
         }
     }
 
-    private void addEvent(String taskName) {
+    private void addEvent(String taskName) throws AllyException {
         try {
             String[] parts = taskName.split(" /from ");
-            taskName = parts[0].substring(6).trim();
+            taskName = parts[0].substring(5).trim();
+
+            if (taskName.isEmpty()) {
+                throw new EmptyTaskNameException("event");
+            }
+
             String[] time = parts[1].split(" /to ");
             String startTime = time[0].trim();
             String endTime = time[1].trim();
@@ -98,15 +118,15 @@ public class Ally {
             tasks.add(task);
             printConfirmation(task);
         } catch (ArrayIndexOutOfBoundsException e) {
-            System.out.println("Sorry, the event format is invalid.");
+            System.out.println("Sorry! The event format is invalid. 😵");
             System.out.println(horizontalDivider);
         }
     }
 
     private void printConfirmation(Task task) {
-        System.out.println("Got it. I've added this task.");
+        System.out.println("Okay! I've added this task. 😇");
         System.out.println("  " + task);
-        System.out.println("Now you have " + tasks.size() + " task(s) in the list.");
+        System.out.println("You now have " + tasks.size() + " task(s) in your list.");
         System.out.println(horizontalDivider);
     }
 
@@ -126,10 +146,10 @@ public class Ally {
                 System.out.println("Nice! I've marked this task as done: ");
                 System.out.println(tasks.get(taskIndex).toString());
             } else {
-                System.out.println("Sorry, the task number you entered is invalid.");
+                System.out.println("Sorry! The task number you entered is invalid. 😵");
             }
         } catch (NumberFormatException | NullPointerException e) {
-            System.out.println("Sorry, the task number you entered is invalid.");
+            System.out.println("Sorry! The task number you entered is invalid. 😵");
         }
 
         System.out.println(horizontalDivider);
@@ -140,20 +160,20 @@ public class Ally {
             int taskIndex = Integer.parseInt(taskName.substring(7)) - 1;
             if (taskIndex >= 0 && taskIndex < tasks.size()) {
                 tasks.markAsNotDone(taskIndex);
-                System.out.println("OK, I've marked this task as not done yet: ");
+                System.out.println("Okay! I've marked this task as not done yet: ");
                 System.out.println(tasks.get(taskIndex).toString());
             } else {
-                System.out.println("Sorry, the task number you entered is invalid.");
+                System.out.println("Sorry! The task number you entered is invalid. 😵");
             }
         } catch (NumberFormatException | NullPointerException e) {
-            System.out.println("Sorry, the task number you entered is invalid.");
+            System.out.println("Sorry! The task number you entered is invalid. 😵");
         }
 
         System.out.println(horizontalDivider);
     }
 
     private void printGoodbye() {
-        System.out.println("Bye. Hope to see you again soon!");
+        System.out.println("Bye. Hope to see you again soon! 🤗");
         System.out.println(horizontalDivider);
     }
 

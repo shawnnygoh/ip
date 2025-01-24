@@ -1,16 +1,33 @@
 package ToDoList;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import Storage.*;
 
 public class ToDoList {
-    private final ArrayList<Task> tasks;
+    private ArrayList<Task> tasks;
+    private final Storage storage;
 
     public ToDoList() {
-        this.tasks = new ArrayList<>();
+        this.storage = new Storage();
+        try {
+            this.tasks = storage.loadTasks();
+        } catch (IOException e) {
+            this.tasks = new ArrayList<>();
+        }
     }
 
     public void add(Task task) {
         tasks.add(task);
+        saveToFile();
+    }
+
+    public void saveToFile() {
+        try {
+            storage.saveTask(tasks);
+        } catch (IOException e) {
+            System.out.println("Uh oh! Unable to save tasks to file. 😓");
+        }
     }
 
     public Task get(int index) {
@@ -23,7 +40,9 @@ public class ToDoList {
 
     public Task delete(int index) {
         if (index >= 0 && index < tasks.size()) {
-            return tasks.remove(index);
+            Task deletedTask = tasks.remove(index);
+            saveToFile();
+            return deletedTask;
         }
 
         return null;
@@ -36,12 +55,14 @@ public class ToDoList {
     public void markAsDone(int index) {
         if (index >= 0 && index < tasks.size()) {
             tasks.get(index).markAsDone();
+            saveToFile();
         }
     }
 
     public void markAsNotDone(int index) {
         if (index >= 0 && index < tasks.size()) {
             tasks.get(index).markAsNotDone();
+            saveToFile();
         }
     }
 }

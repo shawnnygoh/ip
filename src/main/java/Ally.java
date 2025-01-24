@@ -1,9 +1,12 @@
 import java.util.Scanner;
 import ToDoList.*;
 import AllyException.*;
+import java.time.LocalDateTime;
+import Parser.*;
+import java.time.format.DateTimeParseException;
+import java.time.format.DateTimeFormatter;
 
 public class Ally {
-    private String name;
     private static final String horizontalDivider = "____________________________________________________________";
     private static final String logo =
             "    _    _ _\n"
@@ -94,11 +97,11 @@ public class Ally {
                 throw new EmptyTaskNameException("deadline");
             }
 
-            String deadline = parts[1].trim();
+            LocalDateTime deadline = DateTimeParser.parse(parts[1].trim());
             Task task = new Deadline(taskName, deadline);
             tasks.add(task);
             printConfirmation(task);
-        } catch (ArrayIndexOutOfBoundsException e) {
+        } catch (DateTimeParseException e) {
             System.out.println("Sorry, the deadline format is invalid. 😵");
             System.out.println(horizontalDivider);
         }
@@ -114,15 +117,30 @@ public class Ally {
             }
 
             String[] time = parts[1].split(" /to ");
-            String startTime = time[0].trim();
+            LocalDateTime start = DateTimeParser.parse(time[0].trim());
+            LocalDateTime end;
+
             String endTime = time[1].trim();
-            Task task = new Event(taskName, startTime, endTime);
+            if (isTimeOnly(endTime)) {
+                String startDate = start.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+                end = DateTimeParser.parse(startDate + " " + endTime);
+            } else {
+                end = DateTimeParser.parse(endTime);
+            }
+
+            Task task = new Event(taskName, start, end);
             tasks.add(task);
             printConfirmation(task);
-        } catch (ArrayIndexOutOfBoundsException e) {
-            System.out.println("Sorry! The event format is invalid. 😵");
+        } catch (DateTimeParseException e) {
+            System.out.println("Sorry, the event format is invalid. 😵");
             System.out.println(horizontalDivider);
         }
+    }
+
+    private boolean isTimeOnly(String time) {
+        return time.matches("\\d{1,4}") ||
+                time.matches("\\d{1,2}:\\d{2}") ||
+                time.matches("\\d{1,2}(?:am|pm)");
     }
 
     private void deleteTask(String taskName) throws AllyException {
@@ -166,7 +184,7 @@ public class Ally {
             int taskIndex = Integer.parseInt(taskName.substring(5)) - 1;
             if (taskIndex >= 0 && taskIndex < tasks.size()) {
                 tasks.markAsDone(taskIndex);
-                System.out.println("Nice! I've marked this task as done: ");
+                System.out.println("Nice! I've marked this task as done:");
                 System.out.println(tasks.get(taskIndex).toString());
             } else {
                 System.out.println("Sorry! The task number you entered is invalid. 😵");

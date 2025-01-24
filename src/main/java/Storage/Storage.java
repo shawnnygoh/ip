@@ -2,8 +2,11 @@ package Storage;
 
 import java.io.*;
 import java.nio.file.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import ToDoList.*;
+import Parser.*;
 
 public class Storage {
     private static final String FILE_PATH = "data/ally.txt";
@@ -44,12 +47,19 @@ public class Storage {
     }
 
     private String encodeTask(Task task) {
-        String baseEncoding = task.getType() + " | " + (task.isDone() ? "1" : "0") + " | " + task.getDescription();
+        String baseEncoding = String.format("%s | %s | %s",
+                task.getType(),
+                task.isDone() ? "1" : "0",
+                task.getDescription());
 
-        if (task instanceof Deadline) {
-            return baseEncoding + " | " + ((Deadline) task).getDate();
-        } else if (task instanceof Event) {
-            return baseEncoding + " | " + ((Event) task).getTime();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy HHmm");
+        if (task instanceof Deadline deadline) {
+            return baseEncoding + " | " + deadline.getDate().format(formatter);
+        } else if (task instanceof Event event) {
+            return String.format("%s | %s | %s",
+                    baseEncoding,
+                    event.getStartTime().format(formatter),
+                    event.getEndTime().format(formatter));
         }
 
         return baseEncoding;
@@ -69,18 +79,24 @@ public class Storage {
         case "T":
             task = new Todo(parts[2]);
             break;
+
         case "D":
             if (parts.length < 4) {
                 throw new IllegalArgumentException("Uh oh! Invalid deadline format. 😓");
             }
-            task = new Deadline(parts[2], parts[3]);
+            LocalDateTime deadline = DateTimeParser.parse(parts[3]);
+            task = new Deadline(parts[2], deadline);
             break;
+
         case "E":
             if (parts.length < 5) {
                 throw new IllegalArgumentException("Uh oh! Invalid event format. 😓");
             }
-            task = new Event(parts[2], parts[3], parts[4]);
+            LocalDateTime startTime = DateTimeParser.parse(parts[3]);
+            LocalDateTime endTime = DateTimeParser.parse(parts[4]);
+            task = new Event(parts[2], startTime, endTime);
             break;
+
         default:
             throw new IllegalArgumentException("Uh oh! Unknown task type. 😓");
         }

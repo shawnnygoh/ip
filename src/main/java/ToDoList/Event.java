@@ -1,42 +1,51 @@
 package ToDoList;
 
-public class Event extends Task {
-    protected String startTime;
-    protected String endTime;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
-    public Event(String taskName, String startTime, String endTime) {
+public class Event extends Task {
+    private final LocalDateTime startTime;
+    private final LocalDateTime endTime;
+
+    public Event(String taskName, LocalDateTime startTime, LocalDateTime endTime) {
         super(taskName);
         this.startTime = startTime;
         this.endTime = endTime;
     }
 
-    public String getTime() {
-        String start = startTime;
-        String end = endTime;
+    public LocalDateTime getStartTime() {
+        return startTime;
+    }
 
-        String startPeriod = "";
-        String endPeriod = "";
+    public LocalDateTime getEndTime() {
+        return endTime;
+    }
 
-        if (start.toLowerCase().contains("am")) {
-            startPeriod = "am";
+    private String formatDateTime(LocalDateTime dateTime) {
+        String formattedDateTime = dateTime.format(DateTimeFormatter.ofPattern("MMM dd yyyy"));
+
+        int hour = dateTime.getHour();
+        if (hour == 0) {
+            hour = 12;
+        } else if (hour > 12) {
+            hour -= 12;
         }
 
-        if (start.toLowerCase().contains("pm")) {
-            startPeriod = "pm";
+        String minutes;
+        if (dateTime.getMinute() == 0) {
+            minutes = "";
+        } else {
+            minutes = ":" + String.format("%02d", dateTime.getMinute());
         }
 
-        if (end.toLowerCase().contains("am")) {
-            endPeriod = "am";
+        String meridiemIndicator;
+        if (dateTime.getHour() < 12) {
+            meridiemIndicator = "am";
+        } else {
+            meridiemIndicator = "pm";
         }
 
-        if (end.toLowerCase().contains("pm")) {
-            endPeriod = "pm";
-        }
-
-        start = start.replaceAll("(?i)am|pm", "").trim();
-        end = end.replaceAll("(?i)am|pm", "").trim();
-
-        return start + startPeriod + "-" + end + endPeriod;
+        return formattedDateTime + " " + hour + minutes + meridiemIndicator;
     }
 
     @Override
@@ -46,6 +55,6 @@ public class Event extends Task {
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (from: " + startTime + " to: " + endTime + ")";
+        return "[E]" + super.toString() + " (from: " + formatDateTime(startTime) + " to: " + formatDateTime(endTime) + ")";
     }
 }

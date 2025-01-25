@@ -1,14 +1,14 @@
-package ToDoList;
+package ally.tasklist;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import Storage.*;
+import ally.storage.*;
 
-public class ToDoList {
+public class TaskList {
     private ArrayList<Task> tasks;
     private final Storage storage;
 
-    public ToDoList() {
+    public TaskList() {
         this.storage = new Storage();
         try {
             this.tasks = storage.loadTasks();
@@ -59,7 +59,7 @@ public class ToDoList {
         }
     }
 
-    public void markAsNotDone(int index) {
+    public void unmarkAsDone(int index) {
         if (index >= 0 && index < tasks.size()) {
             tasks.get(index).markAsNotDone();
             saveToFile();

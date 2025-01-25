@@ -1,4 +1,4 @@
-package AllyException;
+package ally.allyexception;
 
 public class EmptyTaskNameException extends AllyException {
     public EmptyTaskNameException(String taskType) {

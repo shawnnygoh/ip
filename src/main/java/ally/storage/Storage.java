@@ -1,12 +1,16 @@
-package Storage;
+package ally.storage;
 
 import java.io.*;
 import java.nio.file.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import ToDoList.*;
-import Parser.*;
+
+import ally.parser.*;
+import ally.tasklist.Deadline;
+import ally.tasklist.Event;
+import ally.tasklist.Task;
+import ally.tasklist.Todo;
 
 public class Storage {
     private static final String FILE_PATH = "data/ally.txt";
@@ -32,7 +36,6 @@ public class Storage {
 
         BufferedReader br = new BufferedReader(new FileReader(FILE_PATH));
         String line;
-
         while ((line = br.readLine()) != null) {
             try {
                 tasks.add(decodeTask(line));
@@ -53,6 +56,7 @@ public class Storage {
                 task.getDescription());
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy HHmm");
+
         if (task instanceof Deadline deadline) {
             return baseEncoding + " | " + deadline.getDate().format(formatter);
         } else if (task instanceof Event event) {
@@ -69,7 +73,7 @@ public class Storage {
         String[] parts = line.split(" \\| ");
 
         if (parts.length < 3) {
-            throw new IllegalArgumentException("Uh oh! Invalid task format. 😓");
+            throw new IllegalArgumentException("Uh oh! Invalid task format. 😵");
         }
 
         boolean isDone = parts[1].equals("1");
@@ -84,7 +88,7 @@ public class Storage {
             if (parts.length < 4) {
                 throw new IllegalArgumentException("Uh oh! Invalid deadline format. 😓");
             }
-            LocalDateTime deadline = DateTimeParser.parse(parts[3]);
+            LocalDateTime deadline = Parser.parseDateTime(parts[3]);
             task = new Deadline(parts[2], deadline);
             break;
 
@@ -92,8 +96,8 @@ public class Storage {
             if (parts.length < 5) {
                 throw new IllegalArgumentException("Uh oh! Invalid event format. 😓");
             }
-            LocalDateTime startTime = DateTimeParser.parse(parts[3]);
-            LocalDateTime endTime = DateTimeParser.parse(parts[4]);
+            LocalDateTime startTime = Parser.parseDateTime(parts[3]);
+            LocalDateTime endTime = Parser.parseDateTime(parts[4]);
             task = new Event(parts[2], startTime, endTime);
             break;
 

@@ -1,4 +1,4 @@
-package AllyException;
+package ally.allyexception;
 
 public class UnknownCommandException extends AllyException {
     public UnknownCommandException() {

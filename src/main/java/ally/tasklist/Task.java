@@ -1,4 +1,4 @@
-package ToDoList;
+package ally.tasklist;
 
 public class Task {
     protected String description;

@@ -1,4 +1,4 @@
-package ToDoList;
+package ally.tasklist;
 
 public class Todo extends Task {
     public Todo(String taskName) {

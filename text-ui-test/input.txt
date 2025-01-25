@@ -1,0 +1,40 @@
+todo read book
+todo
+todo ""
+todo     ""
+deadline return book /by 2024-02-14 1800
+deadline study /by 2024-02-14 06:00pm
+deadline task /by Monday 1800
+deadline work /by Sunday 6pm
+deadline
+deadline /by 2024-02-14
+deadline task /by
+deadline task /by invalid
+event meeting /from 2024-02-14 0900 /to 2024-02-14 1700
+event lunch /from 2024-02-14 1200 /to 1300
+event study /from Monday 0900 /to 1700
+event conf /from 2024-02-14 0900 /to 2024-02-15 1700
+event
+event /from 2024-02-14
+event task /from
+event task /to
+event task /from 2024-02-14
+event task /from invalid /to 1700
+mark 1
+mark 0
+mark -1
+mark 999
+mark abc
+unmark 1
+unmark 0
+delete 1
+delete 0
+delete -1
+delete 999
+delete abc
+list
+find 2024-02-14
+find Monday
+find invalid
+bye
+unknown command

@@ -1,6 +1,7 @@
+package ally.ui;
+
 import ally.allyexception.*;
 import ally.parser.*;
-import ally.ui.*;
 import ally.tasklist.*;
 import ally.command.*;
 

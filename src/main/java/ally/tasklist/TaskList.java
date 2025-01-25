@@ -59,6 +59,15 @@ public class TaskList {
     }
 
     /**
+     * Gets the list of all tasks.
+     *
+     * @return the list of tasks
+     */
+    public ArrayList<Task> getAll() {
+        return tasks;
+    }
+
+    /**
      * Deletes a task by its index and saves the updated list to storage.
      *
      * @param index the index of the task to delete

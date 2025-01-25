@@ -110,6 +110,26 @@ public class UI {
         }
         return false;
     }
+
+    public void showTasksByKeyword(TaskList tasks, String keyword) {
+        showDivider();
+        System.out.println("Here are the matching tasks in your list:");
+        int taskCount = 1;
+
+        for (Task task : tasks.getAll()) {
+            if (task.getDescription().toLowerCase().contains(keyword.toLowerCase())) {
+                System.out.println(taskCount + "." + task);
+                taskCount++;
+            }
+        }
+
+        if (taskCount == 1) {
+            System.out.println("No matching tasks found.");
+        }
+
+        showDivider();
+    }
+
 }
 
 

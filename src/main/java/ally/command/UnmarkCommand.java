@@ -4,9 +4,18 @@ import ally.allyexception.*;
 import ally.tasklist.*;
 import ally.ui.*;
 
+/**
+ * Command to unmark a task as done.
+ */
 public class UnmarkCommand extends Command {
     private final int index;
 
+    /**
+     * Constructs an UnmarkCommand from the user input.
+     *
+     * @param input the user input string.
+     * @throws AllyException if the task number is invalid.
+     */
     public UnmarkCommand(String input) throws AllyException {
         try {
             this.index = Integer.parseInt(input.substring(7).trim()) - 1;
@@ -15,6 +24,13 @@ public class UnmarkCommand extends Command {
         }
     }
 
+    /**
+     * Executes the command to unmark a task as done.
+     *
+     * @param tasks the task list.
+     * @param ui    the user interface.
+     * @throws AllyException if the task number is invalid.
+     */
     @Override
     public void execute(TaskList tasks, UI ui) throws AllyException {
         if (index >= 0 && index < tasks.size()) {

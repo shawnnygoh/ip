@@ -4,9 +4,18 @@ import ally.allyexception.*;
 import ally.tasklist.*;
 import ally.ui.*;
 
+/**
+ * Command to delete a task by its index.
+ */
 public class DeleteCommand extends Command {
     private final int index;
 
+    /**
+     * Constructs a DeleteCommand from the user input.
+     *
+     * @param input the user input string.
+     * @throws AllyException if the task number is invalid or missing.
+     */
     public DeleteCommand(String input) throws AllyException {
         try {
             if (input.trim().equals("delete")) {
@@ -18,6 +27,13 @@ public class DeleteCommand extends Command {
         }
     }
 
+    /**
+     * Executes the command to delete a task.
+     *
+     * @param tasks the task list.
+     * @param ui    the user interface.
+     * @throws InvalidTaskNumberException if the task number is invalid.
+     */
     @Override
     public void execute(TaskList tasks, UI ui) throws InvalidTaskNumberException {
         if (index >= 0 && index < tasks.size()) {

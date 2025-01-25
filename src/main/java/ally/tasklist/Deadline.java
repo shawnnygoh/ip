@@ -3,14 +3,28 @@ package ally.tasklist;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Represents a deadline task with a specific due date and time.
+ */
 public class Deadline extends Task {
     private final LocalDateTime deadline;
 
+    /**
+     * Constructs a Deadline task with the specified name and deadline.
+     *
+     * @param taskName the name of the task
+     * @param deadline the due date and time of the task
+     */
     public Deadline(String taskName, LocalDateTime deadline) {
         super(taskName);
         this.deadline = deadline;
     }
 
+    /**
+     * Gets the deadline of the task.
+     *
+     * @return the deadline of the task
+     */
     public LocalDateTime getDate() {
         return deadline;
     }

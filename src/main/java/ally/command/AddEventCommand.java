@@ -9,11 +9,20 @@ import ally.parser.*;
 import ally.tasklist.*;
 import ally.ui.*;
 
+/**
+ * Command to add an event task.
+ */
 public class AddEventCommand extends Command {
     private final String description;
     private final LocalDateTime startTime;
     private final LocalDateTime endTime;
 
+    /**
+     * Constructs an AddEventCommand from the user input.
+     *
+     * @param input the user input string.
+     * @throws AllyException if the input format is invalid or the task name is empty.
+     */
     public AddEventCommand(String input) throws AllyException {
         String[] parts = input.split(" /from ");
         if (parts.length != 2) {
@@ -44,6 +53,12 @@ public class AddEventCommand extends Command {
         }
     }
 
+    /**
+     * Executes the command to add an event task.
+     *
+     * @param tasks the task list.
+     * @param ui    the user interface.
+     */
     @Override
     public void execute(TaskList tasks, UI ui) {
         Task task = new Event(description, startTime, endTime);

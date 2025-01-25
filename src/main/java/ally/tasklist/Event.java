@@ -3,20 +3,40 @@ package ally.tasklist;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Represents an event task with a start time and end time.
+ */
 public class Event extends Task {
     private final LocalDateTime startTime;
     private final LocalDateTime endTime;
 
+    /**
+     * Constructs an Event task with the specified name, start time, and end time.
+     *
+     * @param taskName  the name of the task
+     * @param startTime the start time of the event
+     * @param endTime   the end time of the event
+     */
     public Event(String taskName, LocalDateTime startTime, LocalDateTime endTime) {
         super(taskName);
         this.startTime = startTime;
         this.endTime = endTime;
     }
 
+    /**
+     * Gets the start time of the event.
+     *
+     * @return the start time of the event
+     */
     public LocalDateTime getStartTime() {
         return startTime;
     }
 
+    /**
+     * Gets the end time of the event.
+     *
+     * @return the end time of the event
+     */
     public LocalDateTime getEndTime() {
         return endTime;
     }

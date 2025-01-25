@@ -8,9 +8,18 @@ import ally.allyexception.*;
 import ally.tasklist.*;
 import ally.ui.*;
 
+/**
+ * Command to find tasks.
+ */
 public class FindCommand extends Command {
     private final LocalDateTime searchDate;
 
+    /**
+     * Constructs a FindCommand from the user input.
+     *
+     * @param input the user input string.
+     * @throws AllyException if the date format is invalid.
+     */
     public FindCommand(String input) throws AllyException {
         try {
             String dateStr = input.substring(5).trim();
@@ -20,6 +29,12 @@ public class FindCommand extends Command {
         }
     }
 
+    /**
+     * Executes the command to find tasks by date.
+     *
+     * @param tasks the task list.
+     * @param ui    the user interface.
+     */
     @Override
     public void execute(TaskList tasks, UI ui) {
         LocalDateTime dayStart = searchDate.withHour(0).withMinute(0);

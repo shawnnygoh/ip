@@ -41,7 +41,7 @@ You now have 5 task(s) in your list.
 ____________________________________________________________
 ____________________________________________________________
 Okay! I've added this task. 😇
-  [D][ ] work (by: Jan 26 2025 6pm)
+  [D][ ] work (by: Feb 02 2025 6pm)
 You now have 6 task(s) in your list.
 ____________________________________________________________
 ____________________________________________________________
@@ -140,7 +140,7 @@ Here are the task(s) in your list:
 2.[T][ ] ""
 3.[D][ ] return book (by: Feb 14 2024 6pm)
 4.[D][ ] task (by: Jan 27 2025 6pm)
-5.[D][ ] work (by: Jan 26 2025 6pm)
+5.[D][ ] work (by: Feb 02 2025 6pm)
 6.[E][ ] meeting (from: Feb 14 2024 9am to: Feb 14 2024 5pm)
 7.[E][ ] lunch (from: Feb 14 2024 12pm to: Feb 14 2024 1pm)
 8.[E][ ] study (from: Jan 27 2025 9am to: Jan 27 2025 5pm)
@@ -154,12 +154,14 @@ Here are the tasks on Feb 14 2024:
 4.[E][ ] conf (from: Feb 14 2024 9am to: Feb 15 2024 5pm)
 ____________________________________________________________
 ____________________________________________________________
-Here are the tasks on Jan 27 2025:
-1.[D][ ] task (by: Jan 27 2025 6pm)
-2.[E][ ] study (from: Jan 27 2025 9am to: Jan 27 2025 5pm)
+____________________________________________________________
+Here are the matching tasks in your list:
+No matching tasks found.
 ____________________________________________________________
 ____________________________________________________________
-Sorry, the date format is invalid. 😵
+____________________________________________________________
+Here are the matching tasks in your list:
+No matching tasks found.
 ____________________________________________________________
 ____________________________________________________________
 Bye. Hope to see you again soon! 🤗

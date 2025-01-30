@@ -1,8 +1,8 @@
 package ally.command;
 
-import ally.allyexception.*;
-import ally.tasklist.*;
-import ally.ui.*;
+import ally.allyexception.AllyException;
+import ally.tasklist.TaskList;
+import ally.ui.UI;
 
 /**
  * Abstract base class for all commands.

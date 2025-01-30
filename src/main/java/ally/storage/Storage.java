@@ -1,20 +1,34 @@
 package ally.storage;
 
-import java.io.*;
-import java.nio.file.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
-import ally.parser.*;
+import ally.parser.Parser;
 import ally.tasklist.Deadline;
 import ally.tasklist.Event;
 import ally.tasklist.Task;
 import ally.tasklist.Todo;
 
+/**
+ * Handles file storage operations for tasks, including saving to and loading from a file.
+ */
 public class Storage {
     private static final String FILE_PATH = "data/ally.txt";
 
+    /**
+     * Saves a list of tasks to a file.
+     * Creates directories if they don't exist.
+     *
+     * @param tasks ArrayList of tasks to save
+     * @throws IOException if there is an error writing to the file
+     */
     public void saveTask(ArrayList<Task> tasks) throws IOException {
         Files.createDirectories(Paths.get("data"));
 
@@ -27,6 +41,13 @@ public class Storage {
         fw.close();
     }
 
+    /**
+     * Loads tasks from a file.
+     * Creates a new empty list if the file doesn't exist.
+     *
+     * @return ArrayList of tasks loaded from file
+     * @throws IOException if there is an error reading from the file
+     */
     public ArrayList<Task> loadTasks() throws IOException {
         ArrayList<Task> tasks = new ArrayList<>();
 

@@ -1,7 +1,7 @@
 package ally.command;
 
-import ally.tasklist.*;
-import ally.ui.*;
+import ally.tasklist.TaskList;
+import ally.ui.UI;
 
 /**
  * Command to exit the application.

@@ -1,10 +1,17 @@
 package ally.ui;
 
-import java.util.*;
-import ally.tasklist.*;
-import java.time.*;
-import java.time.format.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Scanner;
 
+import ally.tasklist.Deadline;
+import ally.tasklist.Event;
+import ally.tasklist.Task;
+import ally.tasklist.TaskList;
+
+/**
+ * Handles user interface operations for the Ally chatbot.
+ */
 public class UI {
     private static final String HORIZONTAL_DIVIDER = "____________________________________________________________";
     private static final String LOGO =
@@ -22,6 +29,9 @@ public class UI {
         this.scanner = new Scanner(System.in);
     }
 
+    /**
+     * Displays welcome message with logo.
+     */
     public void showWelcome() {
         showDivider();
         System.out.println(LOGO);
@@ -42,11 +52,22 @@ public class UI {
         System.out.println(HORIZONTAL_DIVIDER);
     }
 
+    /**
+     * Shows error message to user.
+     *
+     * @param message Error message to display
+     */
     public void showError(String message) {
         System.out.println(message);
         showDivider();
     }
 
+    /**
+     * Shows confirmation of task addition.
+     *
+     * @param task The task that was added
+     * @param totalTasks Current total number of tasks
+     */
     public void showTaskAdded(Task task, int totalTasks) {
         System.out.println("Okay! I've added this task. 😇");
         System.out.println("  " + task);
@@ -54,6 +75,11 @@ public class UI {
         showDivider();
     }
 
+    /**
+     * Displays all tasks in the list.
+     *
+     * @param tasks TaskList containing all tasks
+     */
     public void showTaskList(TaskList tasks) {
         System.out.println("Here are the task(s) in your list:");
         for (int i = 0; i < tasks.size(); i++) {
@@ -62,6 +88,12 @@ public class UI {
         showDivider();
     }
 
+    /**
+     * Shows confirmation of task deletion.
+     *
+     * @param task The task that was deleted
+     * @param remainingTasks Number of tasks remaining after deletion
+     */
     public void showTaskDeleted(Task task, int remainingTasks) {
         System.out.println("Noted! I've deleted this task:");
         System.out.println("  " + task);
@@ -69,26 +101,47 @@ public class UI {
         showDivider();
     }
 
+    /**
+     * Shows confirmation that a task was marked as done.
+     *
+     * @param task The task that was marked as done
+     */
     public void showMarkedDone(Task task) {
         System.out.println("Nice! I've marked this task as done:");
         System.out.println(task);
         showDivider();
     }
 
+    /**
+     * Shows confirmation that a task was unmarked.
+     *
+     * @param task The task that was unmarked
+     */
     public void showUnmarkedDone(Task task) {
         System.out.println("Okay! I've marked this task as not done yet:");
         System.out.println(task);
         showDivider();
     }
 
+    /**
+     * Displays goodbye message when exiting.
+     */
     public void showGoodbye() {
         System.out.println("Bye. Hope to see you again soon! 🤗");
         showDivider();
     }
 
+    /**
+     * Shows all tasks occurring on a specific date.
+     *
+     * @param tasks TaskList to search through
+     * @param date The date to search for
+     * @param dayStart Start of the day
+     * @param dayEnd End of the day
+     */
     public void showTasksOnDate(TaskList tasks, LocalDateTime date, LocalDateTime dayStart, LocalDateTime dayEnd) {
-        System.out.println("Here are the tasks on " +
-                date.format(DateTimeFormatter.ofPattern("MMM dd yyyy")) + ":");
+        System.out.println("Here are the tasks on "
+                + date.format(DateTimeFormatter.ofPattern("MMM dd yyyy")) + ":");
 
         int count = 0;
         for (int i = 0; i < tasks.size(); i++) {
@@ -105,12 +158,18 @@ public class UI {
             LocalDateTime dueDate = deadline.getDate();
             return !dueDate.isBefore(dayStart) && !dueDate.isAfter(dayEnd);
         } else if (task instanceof Event event) {
-            return !event.getStartTime().isAfter(dayEnd) &&
-                    !event.getEndTime().isBefore(dayStart);
+            return !event.getStartTime().isAfter(dayEnd)
+                    && !event.getEndTime().isBefore(dayStart);
         }
         return false;
     }
 
+    /**
+     * Shows all tasks containing a specific keyword.
+     *
+     * @param tasks TaskList to search through
+     * @param keyword Keyword to search for in task descriptions
+     */
     public void showTasksByKeyword(TaskList tasks, String keyword) {
         showDivider();
         System.out.println("Here are the matching tasks in your list:");
@@ -131,6 +190,3 @@ public class UI {
     }
 
 }
-
-
-

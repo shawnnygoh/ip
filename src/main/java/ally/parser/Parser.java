@@ -1,12 +1,29 @@
 package ally.parser;
 
-import java.time.*;
-import java.time.format.*;
-
-import ally.allyexception.*;
-import ally.command.*;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.time.temporal.TemporalAdjusters;
 
+import ally.allyexception.AllyException;
+import ally.allyexception.InvalidCommandFormatException;
+import ally.allyexception.UnknownCommandException;
+import ally.command.AddDeadlineCommand;
+import ally.command.AddEventCommand;
+import ally.command.AddTodoCommand;
+import ally.command.Command;
+import ally.command.DeleteCommand;
+import ally.command.ExitCommand;
+import ally.command.FindCommand;
+import ally.command.ListCommand;
+import ally.command.MarkCommand;
+import ally.command.UnmarkCommand;
+
+/**
+ * Parser for commands and datetime strings.
+ */
 public class Parser {
     private static final DateTimeFormatter[] INPUT_FORMATTERS = {
             // Date + Time formats
@@ -32,6 +49,13 @@ public class Parser {
             DateTimeFormatter.ofPattern("E ha")
     };
 
+    /**
+     * Parses user input into a Command object.
+     *
+     * @param input String containing user input
+     * @return Command object representing the input
+     * @throws AllyException if input is invalid or cannot be parsed
+     */
     public static Command parseCommand(String input) throws AllyException {
         if (input == null) {
             throw new AllyException("No input provided");
@@ -64,6 +88,13 @@ public class Parser {
         }
     }
 
+    /**
+     * Parses a string into a LocalDateTime object.
+     *
+     * @param dateStr String containing date/time
+     * @return LocalDateTime object
+     * @throws DateTimeParseException if string cannot be parsed
+     */
     public static LocalDateTime parseDateTime(String dateStr) throws DateTimeParseException {
         if (dateStr.matches("(?i)(Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday).*")) {
             return parseDayFormat(dateStr);
@@ -114,10 +145,16 @@ public class Parser {
         }
     }
 
+    /**
+     * Checks if string contains only time information.
+     *
+     * @param timeStr String to check
+     * @return true if string is time-only format
+     */
     public static boolean isTimeOnly(String timeStr) {
-        return timeStr.matches("\\d{1,4}") ||
-                timeStr.matches("\\d{1,2}:\\d{2}") ||
-                timeStr.matches("\\d{1,2}(?:am|pm)");
+        return timeStr.matches("\\d{1,4}")
+                || timeStr.matches("\\d{1,2}:\\d{2}")
+                || timeStr.matches("\\d{1,2}(?:am|pm)");
     }
 
     private static LocalDateTime parseTimeOnly(String dateStr) {

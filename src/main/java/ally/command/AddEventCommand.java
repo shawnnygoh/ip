@@ -22,6 +22,8 @@ public class AddEventCommand extends Command {
     private final LocalDateTime startTime;
     private final LocalDateTime endTime;
 
+    private String response = "Command executed";
+
     /**
      * Constructs an AddEventCommand from the user input.
      *
@@ -68,6 +70,12 @@ public class AddEventCommand extends Command {
     public void execute(TaskList tasks, UI ui) {
         Task task = new Event(description, startTime, endTime);
         tasks.add(task);
+        response = "Added event: " + task.toString();
         ui.showTaskAdded(task, tasks.size());
+    }
+
+    @Override
+    public String getResponseString() {
+        return response;
     }
 }

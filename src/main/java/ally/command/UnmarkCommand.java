@@ -9,6 +9,7 @@ import ally.ui.UI;
  * Command to unmark a task as done.
  */
 public class UnmarkCommand extends Command {
+    private String response = "Command executed";
     private final int index;
 
     /**
@@ -36,9 +37,15 @@ public class UnmarkCommand extends Command {
     public void execute(TaskList tasks, UI ui) throws AllyException {
         if (index >= 0 && index < tasks.size()) {
             tasks.unmarkAsDone(index);
+            response = "Unmarked task: " + tasks.get(index).toString();
             ui.showUnmarkedDone(tasks.get(index));
         } else {
             throw new InvalidTaskNumberException();
         }
+    }
+
+    @Override
+    public String getResponseString() {
+        return response;
     }
 }

@@ -27,4 +27,9 @@ public class ExitCommand extends Command {
     public boolean isExit() {
         return true;
     }
+
+    @Override
+    public String getResponseString() {
+        return "Bye. Hope to see you again soon! 🤗";
+    }
 }

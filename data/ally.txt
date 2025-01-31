@@ -1,2 +1,0 @@
-T | 0 | eat
-D | 0 | eat with friends | 27/1/2025 1800

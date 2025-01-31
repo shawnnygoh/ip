@@ -12,6 +12,8 @@ public class Ally {
     private final TaskList tasks;
     private final UI ui;
 
+    private String commandType;
+
     /**
      * Creates a new Ally chatbot instance with UI and a task list.
      */
@@ -47,5 +49,25 @@ public class Ally {
 
     public static void main(String[] args) {
         new Ally().run();
+    }
+
+    /**
+     * Generates a response for the user's chat message.
+     */
+    public String getResponse(String input) {
+        try {
+            Command c = Parser.parseCommand(input);
+            c.execute(tasks, ui);
+            commandType = c.getClass().getSimpleName();
+            String response = c.getResponseString();
+            return response != null ? response : "Error: No response";
+        } catch (AllyException e) {
+            commandType = "ErrorCommand";
+            return e.getMessage();
+        }
+    }
+
+    public String getCommandType() {
+        return commandType;
     }
 }

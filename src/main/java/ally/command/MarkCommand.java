@@ -9,6 +9,7 @@ import ally.ui.UI;
  * Command to mark a task as done.
  */
 public class MarkCommand extends Command {
+    private String response = "Command executed";
     private final int index;
 
     /**
@@ -36,9 +37,15 @@ public class MarkCommand extends Command {
     public void execute(TaskList tasks, UI ui) throws InvalidTaskNumberException {
         if (index >= 0 && index < tasks.size()) {
             tasks.markAsDone(index);
+            response = "Marked as done: " + tasks.get(index).toString();
             ui.showMarkedDone(tasks.get(index));
         } else {
             throw new InvalidTaskNumberException();
         }
+    }
+
+    @Override
+    public String getResponseString() {
+        return response;
     }
 }

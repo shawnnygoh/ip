@@ -12,6 +12,7 @@ import ally.ui.UI;
  */
 public class AddTodoCommand extends Command {
     private final String description;
+    private String response = "Command executed";
 
     /**
      * Constructs an AddTodoCommand from the user input.
@@ -36,6 +37,12 @@ public class AddTodoCommand extends Command {
     public void execute(TaskList tasks, UI ui) {
         Task task = new Todo(description);
         tasks.add(task);
+        response = "Added todo: " + task.toString();
         ui.showTaskAdded(task, tasks.size());
+    }
+
+    @Override
+    public String getResponseString() {
+        return response;
     }
 }

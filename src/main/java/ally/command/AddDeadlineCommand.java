@@ -20,6 +20,8 @@ public class AddDeadlineCommand extends Command {
     private final String description;
     private final LocalDateTime deadline;
 
+    private String response = "Command executed";
+
     /**
      * Constructs an AddDeadlineCommand from the user input.
      *
@@ -54,6 +56,12 @@ public class AddDeadlineCommand extends Command {
     public void execute(TaskList tasks, UI ui) {
         Task task = new Deadline(description, deadline);
         tasks.add(task);
+        response = "Added deadline: " + task.toString();
         ui.showTaskAdded(task, tasks.size());
+    }
+
+    @Override
+    public String getResponseString() {
+        return response;
     }
 }

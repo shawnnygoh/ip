@@ -11,6 +11,7 @@ import ally.ui.UI;
  * Command to delete a task by its index.
  */
 public class DeleteCommand extends Command {
+    private String response = "Command executed";
     private final int index;
 
     /**
@@ -41,9 +42,15 @@ public class DeleteCommand extends Command {
     public void execute(TaskList tasks, UI ui) throws InvalidTaskNumberException {
         if (index >= 0 && index < tasks.size()) {
             Task deletedTask = tasks.delete(index);
+            response = "Deleted: " + deletedTask.toString();
             ui.showTaskDeleted(deletedTask, tasks.size());
         } else {
             throw new InvalidTaskNumberException();
         }
+    }
+
+    @Override
+    public String getResponseString() {
+        return response;
     }
 }

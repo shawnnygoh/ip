@@ -18,6 +18,13 @@ public abstract class Command {
     public abstract void execute(TaskList tasks, UI ui) throws AllyException;
 
     /**
+     * Gets the response string for the GUI.
+     *
+     * @return String containing the command's response message
+     */
+    public abstract String getResponseString();
+
+    /**
      * Determines if the command is an exit command.
      *
      * @return true if it is an exit command, false otherwise.

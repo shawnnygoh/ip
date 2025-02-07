@@ -115,10 +115,13 @@ public class Parser {
         LocalDateTime nextDay = LocalDateTime.now().with(TemporalAdjusters.next(day));
 
         if (parts.length == 1) {
-            return nextDay.withHour(0).withMinute(0).withSecond(0);
+            return nextDay.withHour(0).withMinute(0);
         }
+        return parseTime(parts[1], nextDay);
+    }
 
-        String timePart = parts[1].toUpperCase()
+    private static LocalDateTime parseTime(String timePart, LocalDateTime date) {
+        String time = timePart.toUpperCase()
                 .replace("AM", "").replace("PM", "").trim();
 
         try {
@@ -134,16 +137,16 @@ public class Parser {
                 minute = timePart.length() > 2 ? Integer.parseInt(timePart.substring(2)) : 0;
             }
 
-            if (parts[1].toLowerCase().contains("pm") && hour < 12) {
+            if (timePart.toLowerCase().contains("pm") && hour < 12) {
                 hour += 12;
             }
-            if (parts[1].toLowerCase().contains("am") && hour == 12) {
+            if (timePart.toLowerCase().contains("am") && hour == 12) {
                 hour = 0;
             }
 
-            return nextDay.withHour(hour).withMinute(minute).withSecond(0);
+            return date.withHour(hour).withMinute(minute);
         } catch (NumberFormatException e) {
-            throw new DateTimeParseException("Invalid time format", dateStr, 0);
+            throw new DateTimeParseException("Invalid time format", timePart, 0);
         }
     }
 

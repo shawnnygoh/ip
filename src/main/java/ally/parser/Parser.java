@@ -57,6 +57,8 @@ public class Parser {
      * @throws AllyException if input is invalid or cannot be parsed
      */
     public static Command parseCommand(String input) throws AllyException {
+        assert input != null : "Command input should not be null";
+
         if (input == null) {
             throw new AllyException("No input provided");
         }

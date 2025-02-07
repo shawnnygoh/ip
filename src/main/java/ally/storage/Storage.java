@@ -92,6 +92,7 @@ public class Storage {
 
     private Task decodeTask(String line) {
         String[] parts = line.split(" \\| ");
+        assert parts.length == 3 : "Task data should have at least 3 parts";
 
         if (parts.length < 3) {
             throw new IllegalArgumentException("Uh oh! Invalid task format. 😵");

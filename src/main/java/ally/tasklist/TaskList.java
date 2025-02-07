@@ -52,6 +52,9 @@ public class TaskList {
      * @return the task at the specified index, or null if the index is invalid
      */
     public Task get(int index) {
+        assert index >= 0 : "Task index should be non-negative";
+        assert index < tasks.size() : "Task index should be within bounds";
+
         if (index >= 0 && index < tasks.size()) {
             return tasks.get(index);
         }

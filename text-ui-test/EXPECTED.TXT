@@ -36,13 +36,11 @@ Sorry! The date/time format for the deadline is invalid. 😵
 ____________________________________________________________
 ____________________________________________________________
 Okay! I've added this task. 😇
-  [D][ ] task (by: Jan 27 2025 6pm)
+  [D][ ] task (by: Feb 10 2025 6pm)
 You now have 5 task(s) in your list.
 ____________________________________________________________
 ____________________________________________________________
-Okay! I've added this task. 😇
-  [D][ ] work (by: Feb 02 2025 6pm)
-You now have 6 task(s) in your list.
+Sorry! The date/time format for the deadline is invalid. 😵
 ____________________________________________________________
 ____________________________________________________________
 Sorry! The deadline format is invalid: Missing '/by' time 😵
@@ -59,22 +57,22 @@ ____________________________________________________________
 ____________________________________________________________
 Okay! I've added this task. 😇
   [E][ ] meeting (from: Feb 14 2024 9am to: Feb 14 2024 5pm)
-You now have 7 task(s) in your list.
+You now have 6 task(s) in your list.
 ____________________________________________________________
 ____________________________________________________________
 Okay! I've added this task. 😇
   [E][ ] lunch (from: Feb 14 2024 12pm to: Feb 14 2024 1pm)
+You now have 7 task(s) in your list.
+____________________________________________________________
+____________________________________________________________
+Okay! I've added this task. 😇
+  [E][ ] study (from: Feb 10 2025 9am to: Feb 10 2025 5pm)
 You now have 8 task(s) in your list.
 ____________________________________________________________
 ____________________________________________________________
 Okay! I've added this task. 😇
-  [E][ ] study (from: Jan 27 2025 9am to: Jan 27 2025 5pm)
-You now have 9 task(s) in your list.
-____________________________________________________________
-____________________________________________________________
-Okay! I've added this task. 😇
   [E][ ] conf (from: Feb 14 2024 9am to: Feb 15 2024 5pm)
-You now have 10 task(s) in your list.
+You now have 9 task(s) in your list.
 ____________________________________________________________
 ____________________________________________________________
 Sorry! The event format is invalid: Missing '/from' time 😵
@@ -120,7 +118,7 @@ ____________________________________________________________
 ____________________________________________________________
 Noted! I've deleted this task:
   [T][ ] read book
-You now have 9 tasks in the list!
+You now have 8 tasks in the list!
 ____________________________________________________________
 ____________________________________________________________
 Sorry! The task number is invalid. 😵
@@ -139,12 +137,11 @@ Here are the task(s) in your list:
 1.[T][ ] ""
 2.[T][ ] ""
 3.[D][ ] return book (by: Feb 14 2024 6pm)
-4.[D][ ] task (by: Jan 27 2025 6pm)
-5.[D][ ] work (by: Feb 02 2025 6pm)
-6.[E][ ] meeting (from: Feb 14 2024 9am to: Feb 14 2024 5pm)
-7.[E][ ] lunch (from: Feb 14 2024 12pm to: Feb 14 2024 1pm)
-8.[E][ ] study (from: Jan 27 2025 9am to: Jan 27 2025 5pm)
-9.[E][ ] conf (from: Feb 14 2024 9am to: Feb 15 2024 5pm)
+4.[D][ ] task (by: Feb 10 2025 6pm)
+5.[E][ ] meeting (from: Feb 14 2024 9am to: Feb 14 2024 5pm)
+6.[E][ ] lunch (from: Feb 14 2024 12pm to: Feb 14 2024 1pm)
+7.[E][ ] study (from: Feb 10 2025 9am to: Feb 10 2025 5pm)
+8.[E][ ] conf (from: Feb 14 2024 9am to: Feb 15 2024 5pm)
 ____________________________________________________________
 ____________________________________________________________
 Here are the tasks on Feb 14 2024:

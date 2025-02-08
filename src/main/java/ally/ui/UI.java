@@ -189,4 +189,11 @@ public class UI {
         showDivider();
     }
 
+    /**
+     * Displays a help page.
+     */
+    public void showHelp() {
+        System.out.println("Here are the list of available commands and how to use them:");
+        showDivider();
+    }
 }

@@ -17,6 +17,7 @@ import ally.command.Command;
 import ally.command.DeleteCommand;
 import ally.command.ExitCommand;
 import ally.command.FindCommand;
+import ally.command.HelpCommand;
 import ally.command.ListCommand;
 import ally.command.MarkCommand;
 import ally.command.UnmarkCommand;
@@ -85,6 +86,8 @@ public class Parser {
             return new MarkCommand(input);
         case "unmark":
             return new UnmarkCommand(input);
+        case "help":
+            return new HelpCommand();
         default:
             throw new UnknownCommandException();
         }

@@ -37,6 +37,10 @@
     -fx-background-color: #ff6b6b;
 }
 
+.help-label {
+    -fx-background-color: #e6e6fa; /* Lavender */
+}
+
 .error-label {
     -fx-background-color: #ffcccb;
 }

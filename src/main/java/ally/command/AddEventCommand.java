@@ -12,7 +12,7 @@ import ally.parser.Parser;
 import ally.tasklist.Event;
 import ally.tasklist.Task;
 import ally.tasklist.TaskList;
-import ally.ui.UI;
+import ally.ui.Ui;
 
 /**
  * Command to add an event task.
@@ -67,7 +67,7 @@ public class AddEventCommand extends Command {
      * @param ui    the user interface.
      */
     @Override
-    public void execute(TaskList tasks, UI ui) {
+    public void execute(TaskList tasks, Ui ui) {
         Task task = new Event(description, startTime, endTime);
         tasks.add(task);
         response = "Added event: " + task.toString();

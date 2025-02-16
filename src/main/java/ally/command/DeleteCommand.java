@@ -5,7 +5,7 @@ import ally.allyexception.InvalidCommandFormatException;
 import ally.allyexception.InvalidTaskNumberException;
 import ally.tasklist.Task;
 import ally.tasklist.TaskList;
-import ally.ui.UI;
+import ally.ui.Ui;
 
 /**
  * Command to delete a task by its index.
@@ -39,7 +39,7 @@ public class DeleteCommand extends Command {
      * @throws InvalidTaskNumberException if the task number is invalid.
      */
     @Override
-    public void execute(TaskList tasks, UI ui) throws InvalidTaskNumberException {
+    public void execute(TaskList tasks, Ui ui) throws InvalidTaskNumberException {
         if (index >= 0 && index < tasks.size()) {
             Task deletedTask = tasks.delete(index);
             response = "Deleted: " + deletedTask.toString();

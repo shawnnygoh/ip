@@ -10,7 +10,7 @@ import ally.tasklist.TaskList;
  */
 public class Ally {
     private final TaskList tasks;
-    private final UI ui;
+    private final Ui ui;
 
     private String commandType;
 
@@ -18,12 +18,12 @@ public class Ally {
      * Creates a new Ally chatbot instance with UI and a task list.
      */
     public Ally() {
-        this.ui = new UI();
+        this.ui = new Ui();
         this.tasks = new TaskList();
     }
 
     /**
-     * * Starts the chatbot application.
+     ** Starts the chatbot application.
      */
     public void run() {
         ui.showWelcome();

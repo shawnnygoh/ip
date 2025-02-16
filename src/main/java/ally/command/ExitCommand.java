@@ -1,7 +1,7 @@
 package ally.command;
 
 import ally.tasklist.TaskList;
-import ally.ui.UI;
+import ally.ui.Ui;
 
 /**
  * Command to exit the application.
@@ -14,7 +14,7 @@ public class ExitCommand extends Command {
      * @param ui    the user interface.
      */
     @Override
-    public void execute(TaskList tasks, UI ui) {
+    public void execute(TaskList tasks, Ui ui) {
         ui.showGoodbye();
     }
 

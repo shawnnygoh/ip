@@ -11,7 +11,7 @@ import ally.parser.Parser;
 import ally.tasklist.Deadline;
 import ally.tasklist.Task;
 import ally.tasklist.TaskList;
-import ally.ui.UI;
+import ally.ui.Ui;
 
 /**
  * Command to add a deadline task.
@@ -53,7 +53,7 @@ public class AddDeadlineCommand extends Command {
      * @param ui    the user interface.
      */
     @Override
-    public void execute(TaskList tasks, UI ui) {
+    public void execute(TaskList tasks, Ui ui) {
         Task task = new Deadline(description, deadline);
         tasks.add(task);
         response = "Added deadline: " + task.toString();

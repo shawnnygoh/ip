@@ -1,7 +1,7 @@
 package ally.command;
 
 import ally.tasklist.TaskList;
-import ally.ui.UI;
+import ally.ui.Ui;
 
 /**
  * Command to list all tasks.
@@ -16,7 +16,7 @@ public class ListCommand extends Command {
      * @param ui    the user interface.
      */
     @Override
-    public void execute(TaskList tasks, UI ui) {
+    public void execute(TaskList tasks, Ui ui) {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < tasks.size(); i++) {
             sb.append((i + 1)).append(". ").append(tasks.get(i)).append("\n");

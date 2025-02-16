@@ -2,7 +2,7 @@ package ally.command;
 
 import ally.allyexception.AllyException;
 import ally.tasklist.TaskList;
-import ally.ui.UI;
+import ally.ui.Ui;
 
 /**
  * Abstract base class for all commands.
@@ -15,7 +15,7 @@ public abstract class Command {
      * @param ui    the user interface.
      * @throws AllyException if an error occurs during execution.
      */
-    public abstract void execute(TaskList tasks, UI ui) throws AllyException;
+    public abstract void execute(TaskList tasks, Ui ui) throws AllyException;
 
     /**
      * Gets the response string for the GUI.

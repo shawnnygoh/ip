@@ -1,7 +1,7 @@
 package ally.command;
 
 import ally.tasklist.TaskList;
-import ally.ui.UI;
+import ally.ui.Ui;
 
 /**
  * Command to access help page.
@@ -25,7 +25,7 @@ public class HelpCommand extends Command {
      * @param ui    the user interface.
      */
     @Override
-    public void execute(TaskList tasks, UI ui) {
+    public void execute(TaskList tasks, Ui ui) {
         ui.showHelp();
     }
 

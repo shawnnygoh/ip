@@ -3,7 +3,7 @@ package ally.command;
 import ally.allyexception.AllyException;
 import ally.allyexception.InvalidTaskNumberException;
 import ally.tasklist.TaskList;
-import ally.ui.UI;
+import ally.ui.Ui;
 
 /**
  * Command to unmark a task as done.
@@ -34,7 +34,7 @@ public class UnmarkCommand extends Command {
      * @throws AllyException if the task number is invalid.
      */
     @Override
-    public void execute(TaskList tasks, UI ui) throws AllyException {
+    public void execute(TaskList tasks, Ui ui) throws AllyException {
         if (index >= 0 && index < tasks.size()) {
             tasks.unmarkAsDone(index);
             response = "Unmarked task: " + tasks.get(index).toString();

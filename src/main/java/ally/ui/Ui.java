@@ -12,7 +12,7 @@ import ally.tasklist.TaskList;
 /**
  * Handles user interface operations for the Ally chatbot.
  */
-public class UI {
+public class Ui {
     private static final String HORIZONTAL_DIVIDER = "____________________________________________________________";
     private static final String LOGO =
             """
@@ -25,7 +25,7 @@ public class UI {
                     """;
     private final Scanner scanner;
 
-    public UI() {
+    public Ui() {
         this.scanner = new Scanner(System.in);
     }
 

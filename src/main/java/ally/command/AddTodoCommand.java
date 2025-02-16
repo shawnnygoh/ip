@@ -5,7 +5,7 @@ import ally.allyexception.EmptyTaskNameException;
 import ally.tasklist.Task;
 import ally.tasklist.TaskList;
 import ally.tasklist.Todo;
-import ally.ui.UI;
+import ally.ui.Ui;
 
 /**
  * Command to add a todo task.
@@ -34,7 +34,7 @@ public class AddTodoCommand extends Command {
      * @param ui    the user interface.
      */
     @Override
-    public void execute(TaskList tasks, UI ui) {
+    public void execute(TaskList tasks, Ui ui) {
         Task task = new Todo(description);
         tasks.add(task);
         response = "Added todo: " + task.toString();

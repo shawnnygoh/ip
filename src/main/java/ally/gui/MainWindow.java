@@ -1,6 +1,7 @@
 package ally.gui;
 
 import ally.ui.Ally;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -63,6 +64,17 @@ public class MainWindow extends AnchorPane {
                     DialogBox.getAllyDialog(response, allyImage, commandType)
             );
             userInput.clear();
+
+            if ("ExitCommand".equals(commandType)) {
+                Platform.runLater(() -> {
+                    try {
+                        Thread.sleep(0);
+                    } catch (InterruptedException e) {
+                        // Ignore exception
+                    }
+                    Platform.exit();
+                });
+            }
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Error in handleUserInput: " + e.getMessage());

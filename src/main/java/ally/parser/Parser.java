@@ -124,9 +124,6 @@ public class Parser {
     }
 
     private static LocalDateTime parseTime(String timePart, LocalDateTime date) {
-        String time = timePart.toUpperCase()
-                .replace("AM", "").replace("PM", "").trim();
-
         try {
             int hour;
             int minute;

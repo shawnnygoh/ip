@@ -36,7 +36,7 @@ Sorry! The date/time format for the deadline is invalid. 😵
 ____________________________________________________________
 ____________________________________________________________
 Okay! I've added this task. 😇
-  [D][ ] task (by: Feb 17 2025 6pm)
+  [D][ ] task (by: Feb 24 2025 6pm)
 You now have 5 task(s) in your list.
 ____________________________________________________________
 ____________________________________________________________
@@ -66,7 +66,7 @@ You now have 7 task(s) in your list.
 ____________________________________________________________
 ____________________________________________________________
 Okay! I've added this task. 😇
-  [E][ ] study (from: Feb 17 2025 9am to: Feb 17 2025 5pm)
+  [E][ ] study (from: Feb 24 2025 9am to: Feb 24 2025 5pm)
 You now have 8 task(s) in your list.
 ____________________________________________________________
 ____________________________________________________________
@@ -137,10 +137,10 @@ Here are the task(s) in your list:
 1.[T][ ] ""
 2.[T][ ] ""
 3.[D][ ] return book (by: Feb 14 2024 6pm)
-4.[D][ ] task (by: Feb 17 2025 6pm)
+4.[D][ ] task (by: Feb 24 2025 6pm)
 5.[E][ ] meeting (from: Feb 14 2024 9am to: Feb 14 2024 5pm)
 6.[E][ ] lunch (from: Feb 14 2024 12pm to: Feb 14 2024 1pm)
-7.[E][ ] study (from: Feb 17 2025 9am to: Feb 17 2025 5pm)
+7.[E][ ] study (from: Feb 24 2025 9am to: Feb 24 2025 5pm)
 8.[E][ ] conf (from: Feb 14 2024 9am to: Feb 15 2024 5pm)
 ____________________________________________________________
 ____________________________________________________________
